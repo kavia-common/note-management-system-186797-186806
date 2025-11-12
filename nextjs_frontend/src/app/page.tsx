@@ -1,9 +1,7 @@
+"use client";
+
+import { NoteList } from "@/components/NoteList";
+
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-white flex items-center justify-center">
-      <h1 className="text-black text-4xl font-light">
-        nextjs_frontend is being generated
-      </h1>
-    </main>
-  );
+  return <NoteList />;
 }

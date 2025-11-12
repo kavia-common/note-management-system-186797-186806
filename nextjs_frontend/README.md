@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ocean Notes – Next.js Frontend
 
-## Getting Started
+A modern notes UI built with Next.js App Router and the Ocean Professional theme.
 
-First, run the development server:
+## Scripts
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- `npm run dev` – start development server
+- `npm run build` – build for production
+- `npm start` – run production build
+- `npm run lint` – lint
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app reads the following optional public vars (NEXT_PUBLIC_*). If absent, it falls back to a local in-browser store (localStorage) so the UI remains fully functional:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `NEXT_PUBLIC_API_BASE` – Base URL for REST API (expects `/notes` endpoints)
+- `NEXT_PUBLIC_BACKEND_URL` – Alternative base URL if `NEXT_PUBLIC_API_BASE` is not set
+- `NEXT_PUBLIC_FRONTEND_URL`, `NEXT_PUBLIC_WS_URL`, `NEXT_PUBLIC_NODE_ENV`, `NEXT_PUBLIC_NEXT_TELEMETRY_DISABLED`,
+  `NEXT_PUBLIC_ENABLE_SOURCE_MAPS`, `NEXT_PUBLIC_PORT`, `NEXT_PUBLIC_TRUST_PROXY`, `NEXT_PUBLIC_LOG_LEVEL`,
+  `NEXT_PUBLIC_HEALTHCHECK_PATH`, `NEXT_PUBLIC_FEATURE_FLAGS`, `NEXT_PUBLIC_EXPERIMENTS_ENABLED` – optional; not required for basic usage.
 
-## Learn More
+When either API base is defined, the app calls:
+- `GET    /notes`
+- `GET    /notes/:id`
+- `POST   /notes`
+- `PUT    /notes/:id`
+- `DELETE /notes/:id`
 
-To learn more about Next.js, take a look at the following resources:
+Otherwise, it uses an in-memory repository persisted to `localStorage` with sample data seeded on first run.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Sidebar + main content layout
+- Notes list, search, new/edit views
+- Delete confirmation
+- Toast notifications
+- Keyboard/accessibility friendly controls
+- Mobile-responsive
+- Local storage fallback with sample data
 
-## Deploy on Vercel
+## Styling
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+TailwindCSS v4 is used with theme variables injected as CSS custom properties for the Ocean Professional palette.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Preview
+
+No special steps are needed; simply run `npm run dev`. The preview system will discover routes automatically.
