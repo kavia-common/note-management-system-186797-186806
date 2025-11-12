@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
-export function Header() {
+function HeaderInner() {
   const router = useRouter();
   const params = useSearchParams();
   const initialQ = params.get("q") ?? "";
@@ -40,5 +40,13 @@ export function Header() {
         + New
       </Link>
     </header>
+  );
+}
+
+export function Header() {
+  return (
+    <Suspense fallback={null}>
+      <HeaderInner />
+    </Suspense>
   );
 }

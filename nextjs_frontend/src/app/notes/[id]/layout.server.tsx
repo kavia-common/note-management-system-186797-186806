@@ -3,12 +3,9 @@
 /**
 // PUBLIC_INTERFACE
  * Server layout stub for /notes/[id] route segment.
- * Also re-exports generateStaticParams to aid Next.js static export detection.
+ * Keep this as a server file but do not export generateStaticParams here
+ * to avoid conflicts with the page-level export required by Next.js.
  */
-export function generateStaticParams() {
-  return [];
-}
-
 export default function NotesIdSegmentLayout({
   children,
 }: {

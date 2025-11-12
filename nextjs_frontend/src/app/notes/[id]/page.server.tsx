@@ -5,10 +5,10 @@ import ClientPage from "./ClientPage";
  * Server route entry for dynamic note page to support static export.
  * - Exports generateStaticParams() required by output: "export"
  * - Renders the client component for interactivity
- * This file must remain a server module (no "use client").
+ * This file is explicitly a server file (page.server.tsx).
  */
-export function generateStaticParams() {
-  // Static export with no pre-rendered params: Next will fallback to client-only behavior.
+export async function generateStaticParams(): Promise<Array<{ id: string }>> {
+  // No pre-rendered dynamic paths; the client page will handle navigation dynamically.
   return [];
 }
 

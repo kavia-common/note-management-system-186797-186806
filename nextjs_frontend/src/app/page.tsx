@@ -1,7 +1,12 @@
 "use client";
 
 import { NoteList } from "@/components/NoteList";
+import { Suspense } from "react";
 
 export default function Home() {
-  return <NoteList />;
+  return (
+    <Suspense fallback={null}>
+      <NoteList />
+    </Suspense>
+  );
 }
